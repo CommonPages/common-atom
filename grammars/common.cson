@@ -1,0 +1,359 @@
+scopeName: 'source.common'
+name: 'Common'
+fileTypes: [
+  'com'
+]
+
+# firstLineMatch: '' # A regular expression that is matched against the first line of the document when Atom is trying to decide if the grammar is appropriate. Useful for shell scripts, mostly.
+# foldingStartMarker: '' # A regular expression that checks for the start of a foldable area (such as `{`).Ò
+# foldingStopMarker: '' # A regular expression that checks for the end of a foldable area (such as `}`). If both folding markers are matched in the same line, there will be no foldable area.
+
+patterns: [
+
+  # Annotations
+  #(.{0,})
+  {
+    name: 'constant.library.common'
+    begin: '(^(\\ ){0,})([A-Za-z0-9_]+)(\\:)'
+    beginCaptures:
+      # '0':
+      #   name: 'markup.underline.common'
+      '0':
+        name: 'comment.block.common'
+      '1':
+        name: 'comment.block.common'
+      '2':
+        name: 'comment.block.common'
+    end: '\\n'
+  }
+
+  # Common
+  {
+    match: '\\b(import|as|alias|mean|let|in|face|quote|head|module|use)\\b'
+    name: 'keyword.other.common'
+  }
+
+  # Spaces
+  {
+    match: '\\b(space|document|page)\\b'
+    name: 'keyword.other.common'
+  }
+
+  # Feeds
+  {
+    match: '\\b(feed|item|revision)\\b'
+    name: 'keyword.other.common'
+  }
+
+  # Models
+  {
+    name: 'keyword.other.common'
+    match: '\\b(model|extend|apply|include|insert|describe|embed|triage|questions|responses)\\b'
+  }
+
+  # Primitives
+  {
+    name: 'keyword.other.common'
+    match: '\\b(story|claim|text|doc)\\b'
+  }
+
+  # Asserts
+  {
+    name: 'keyword.other.common'
+    match: '\\b(line|assume|assert|dispute|question|disclose|suspend|require|from|with|self)\\b'
+  }
+
+  # Paths
+  {
+    name: 'keyword.other.common'
+    match: '\\b(path|step)\\b'
+  }
+
+  # Subjects
+  {
+    name: 'keyword.other.common'
+    match: '\\b(subject)\\b'
+  }
+
+  # Objects
+  {
+    name: 'keyword.other.common'
+    match: '\\b(object|ref|image)\\b'
+  }
+
+  {
+    name: 'keyword.other.common'
+    match: '\\b(concept)\\b'
+  }
+
+  # ... ?
+  {
+    name: 'keyword.other.common'
+    match: ':'
+  }
+
+  # ... ?
+  {
+    name: 'keyword.other.common'
+    match: '\\.'
+  }
+
+  # ... ?
+  {
+    name: 'keyword.other.common'
+    match: '\\* '
+  }
+
+  # Include
+  {
+    name: 'keyword.other.common'
+    match: '\\-'
+  }
+
+  # Extend
+  {
+    name: 'keyword.other.common'
+    match: '\\<'
+  }
+
+  # Insert
+  {
+    name: 'keyword.other.common'
+    match: '\\>'
+  }
+
+  # Apply
+  {
+    name: 'keyword.other.common'
+    match: '\\^'
+  }
+
+  # Mounts
+  {
+    name: 'variable.other.common'
+    match: '\\$[A-Za-z]([A-Za-z0-9_.-]+)?'
+  }
+
+  # Users
+  {
+    name: 'constant.language.common'
+    match: '\\@{1,2}[A-Za-z0-9_]([A-Za-z0-9_-]+)?'
+  }
+
+  # Subjects
+  {
+    name: 'constant.language.common'
+    match: '\\#[A-Za-z]([A-Za-z0-9_.-]+)?'
+  }
+
+  # Objects
+  {
+    name: 'constant.language.common'
+    match: '\\\'[A-Za-z]([A-Za-z0-9_.-]+)?'
+  }
+
+  # Symbols
+  {
+    name: 'variable.other.common'
+    match: '\\*([A-Za-z0-9_-]+)'
+  }
+
+  # Questions
+  {
+    name: 'variable.other.common'
+    match: '\\?[A-Za-z]([A-Za-z0-9_-]+)'
+  }
+
+  # Claims
+  {
+    name: 'variable.other.common'
+    match: '\\!([A-Za-z0-9_-]+)?'
+  }
+
+  #
+  {
+    name: 'comment.other.common'
+    begin: '^( +)?/'
+    end: '\\n'
+  }
+
+  # Rich Text
+  {
+    name: 'comment.other.common'
+    begin: '\\ \\='
+    beginCaptures:
+      '0':
+        name: 'comment.other.common'
+    end: '\\n'
+    patterns: [
+      {
+        name: 'variable.other.common'
+        match: '\\*[A-Za-z]([A-Za-z0-9_-]+)'
+      }
+
+      {
+        name: 'variable.other.common'
+        match: '\\![A-Za-z]([A-Za-z0-9_-]+)?'
+      }
+
+      {
+        name: 'variable.other.common'
+        match: '\\?[A-Za-z]([A-Za-z0-9_-]+)?'
+      }
+
+      {
+        name: 'constant.language.common'
+        match: '\\#[A-Za-z]([A-Za-z0-9_.-]+)?'
+      }
+
+      {
+        name: 'constant.language.common'
+        match: '\\\'[A-Za-z]([A-Za-z0-9_.-]+)?'
+      }
+
+      {
+        name: 'variable.other.common'
+        match: '\\@[A-Za-z0-9_]([A-Za-z0-9_-]+)?'
+      }
+    ]
+  }
+
+  # Inline Html
+  {
+    name: 'constant.library.common'
+    begin: '\\ \\+?\\|'
+    beginCaptures:
+      '0':
+        name: 'keyword.other.common'
+    end: '\\n'
+    patterns: [
+      {
+        include: '#commonmd'
+      }
+    ]
+  }
+
+  {
+    # let foo >
+    'begin': '^(\\s*)([a-z]+) (.+) (\\>)$'
+    'beginCaptures':
+      '2':
+        'name': 'keyword.other.common'
+
+      '4':
+        'name': 'keyword.other.common'
+    'end': '^(?!$)(?!\\1\\s+)'
+    'contentName': 'comment.block.common'
+    'patterns': [
+      {
+        include: '#commonmd'
+      }
+    ]
+  }
+
+
+  {
+    # let foo >
+    'begin': '^([a-z]+) (.+) (\\>)$'
+    'beginCaptures':
+      '2':
+        'name': 'keyword.other.common'
+
+      '4':
+        'name': 'keyword.other.common'
+    'end': '^(?!$)(?!\\1\\s+)'
+    'contentName': 'comment.block.common'
+    'patterns': [
+      {
+        include: '#commonmd'
+      }
+    ]
+  }
+
+  {
+    # >
+    'begin': '^(\\s*)(\\>)(.+)?$'
+    'beginCaptures':
+      '2':
+        'name': 'keyword.other.common'
+
+      '3':
+        'name': 'comment.block.common'
+    'end': '^(?!$)(?!\\1\\s+)'
+    'contentName': 'comment.block.common'
+    'patterns': [
+      {
+        include: '#commonmd'
+      }
+    ]
+  }
+
+  {
+    'begin': '^(\\s*)(<)(.+)$'
+    'beginCaptures':
+      '2':
+        'name': 'keyword.other.common'
+      '3':
+        'name': 'comment.block.common'
+    'end': '\\n'
+  }
+
+  {
+    'begin': '^(\\s*)(-)(.+)$'
+    'beginCaptures':
+      '2':
+        'name': 'keyword.other.common'
+      '3':
+        'name': 'comment.block.common'
+    'end': '\\n'
+  }
+
+  {
+    'begin': '^(\\s*)(>)(.+)$'
+    'beginCaptures':
+      '2':
+        'name': 'keyword.other.common'
+      '3':
+        'name': 'comment.block.common'
+    'end': '\\n'
+  }
+
+  # Comments
+  {
+    name: 'comment.block.common'
+    begin: '\\#\\ [A-Za-z]([A-Za-z0-9_.]+)?'
+    end: '\\n'
+  }
+
+  {
+    name: 'comment.block.common'
+    begin: '\\#[\\ ]+'
+    end: '\\n'
+  }
+
+  {
+    name: 'comment.block.common'
+    begin: '\\#'
+    end: '\\n'
+  }
+]
+
+repository: {
+  'commonmd':
+    patterns: [
+      {
+        'include': 'source.gfm'
+      }
+      {
+        'begin': '^(\\s*)(#.+)$'
+        'end': '\\n'
+        'beginCaptures':
+          '2':
+            'name': 'keyword.other.common'
+      }
+      {
+        name: 'variable.other.common'
+        match: '\\{(([a-z\\-]+):)?([\\\'\\@\\*\\!\\$\\#A-Za-z0-9_\\.\\-]+)(\ ([^\\{]+))?\\}'
+      }
+    ]
+}
